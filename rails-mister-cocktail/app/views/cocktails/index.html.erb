@@ -1,0 +1,19 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <% @cocktails.each do |cocktail| %>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="box">
+          <% if cocktail.photo? %>
+          <div class="box-icon" style="background-image: url('<%= cl_image_path cocktail.photo.path, width: 100, height: 100, crop: :fill%>');"></div>
+          <% end %>
+          <div class="info">
+            <h4 class="text-center"><%=  cocktail.name %></h4>
+            <%= link_to 'Read doses', cocktail_path(cocktail), class:"btn-treehouse" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

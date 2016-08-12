@@ -1,0 +1,50 @@
+<div class="navbar-wagon">
+  <!-- Logo -->
+  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+  <%= image_tag "logo.png" %>
+  <% end %>
+
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <!-- Search form -->
+    <a class="btn-treehouse" data-toggle="modal" data-target="#myCocktailModal">
+      Add Cocktail
+    </a>
+  </div>
+  <!-- Dropdown list appearing on mobile only -->
+  <div class="navbar-wagon-item hidden-md hidden-lg">
+    <div class="dropdown">
+      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li><a href="#">Some mobile link</a></li>
+        <li><a href="#">Other one</a></li>
+        <li><a href="#">Other one</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myCocktailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Cocktail</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for([ Cocktail.new ], html: { multipart: true }) do |f| %>
+        <%= f.input :name, label: 'Name your cocktail' %>
+        <%= f.simple_fields_for :dose do |form_dose| %>
+        <%= form_dose.input :description, label: 'Dose' %>
+        <%= form_dose.input :ingredient_id, label: "Ingredient", as: :select, collection: Ingredient.all %>
+        <%= f.input :photo, as: :attachinary %>
+        <% end %>
+        <%= f.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,10 @@
+<%= simple_form_for([ @cocktail ], html: { multipart: true }) do |f| %>
+<%= f.input :name, label: 'Name your cocktail' %>
+
+<%= f.simple_fields_for :dose do |form_dose| %>
+<%= form_dose.input :description, label: 'Dose' %>
+<%= form_dose.input :ingredient_id, label: "Ingredient", as: :select, collection: Ingredient.all %>
+<% end %>
+
+<%= f.button :submit %>
+<% end %>
